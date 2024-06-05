@@ -17,23 +17,11 @@ def on_change_value(value: np.float64):
     plotter.plot_intensity()
 
 
-lambdaCenter = 500
-"""Центр [nm]"""
+lambda_ = 500
+"""Длина волны [nm]"""
 
-lambdaWidth = 1
-"""Ширина [nm]"""
-
-r = 2
-"""Радиус линзы [м]"""
-
-nLens = 1.501
-"""Refractive index"""
-
-nPlate = 1.501
-"""Refractive index"""
-
-nBetween = 1.001
-"""Refractive index"""
+L = 1
+"""Расстояние до объекта"""
 
 # окно для графиков
 screen = plt.figure(figsize=(12, 8))
@@ -66,12 +54,6 @@ r_param = Slider(axes_r_param,
                  valfmt='%1.1f')
 r_param.on_changed(on_change_value)
 
-line_1, = intensity_graph.plot([], [], lw=3)
 
-newtonRing = NewtonRing.NewtonRings(r, lambdaCenter, nLens, nPlate, nBetween)
-plotter = NewtonRing.NRPlotter(newtonRing, intensity_graph, light_graph)
-
-plotter.plot_intensity()
-plotter.plot_image_light()
 
 plt.show()

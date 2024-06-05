@@ -19,7 +19,6 @@ theta2 = np.radians(-30)
 # Построение графиков
 screen = plt.figure(figsize=(12, 8))
 
-
 # График маятников
 pendulum_graph = plt.subplot(1, 2, 1)
 
@@ -59,8 +58,8 @@ pendulums = Pendulum(theta1, theta2, g, L, m, K, stop_force, dist_between_pendul
 
 ############
 # legend
-line_1, = pendulum_graph.plot([], [], '-', lw=3, color=matplotlib.colors.TABLEAU_COLORS['tab:blue'])
-line_2, = pendulum_graph.plot([], [], '-', lw=3, color=matplotlib.colors.TABLEAU_COLORS['tab:orange'])
+line_1, = pendulum_graph.plot([0 , 3], [0, 3], lw=3)
+line_2, = pendulum_graph.plot([], [], lw=3)
 
 line_alpha_1, = angle_graph.plot([], [], lw=2)
 line_alpha_2, = angle_graph.plot([], [], lw=2)
@@ -87,7 +86,7 @@ def animate(i):
 
     angle_graph.set_xlim([x_0, x_1])
 
-    return line_alpha_1, line_alpha_2, line_1, line_2, line_velocity_1, line_velocity_2
+    return line_1, line_2, line_alpha_1, line_alpha_2, line_velocity_1, line_velocity_2
 
 
 def init():
