@@ -19,15 +19,15 @@ class NewtonRings:
         self.I0 = 0.5
 
     def delta_r(self,
-                 r: np.ndarray,  # x-координаты точек на экране (м)
+                r: np.ndarray,  # x-координаты точек на экране (м)
                 ) -> np.ndarray:
         return np.power(r, 2) / 2 * (1/self.r)
 
     def call_intensity(self,
-                 r: np.ndarray,  # x-координаты точек на экране (м)
-                ) -> np.ndarray:
+                       r: np.ndarray,  # x-координаты точек на экране (м)
+                       ) -> np.ndarray:
         """Вычисляет интенсивность изображения на экране"""
-        return 4*self.I0*np.power(np.sin(np.pi*1*np.power(r,2) / (self.lam*self.r) + np.pi/2), 2)
+        return 4*self.I0*np.power(np.sin(np.pi*1*np.power(r, 2) / (self.lam*self.r) + np.pi/2), 2)
 
 
 class NRPlotter:
@@ -56,8 +56,10 @@ class NRPlotter:
 
         # Радиусы колец
         count = 200
-        r_dark = [np.sqrt(m * self.newtonRing.lam * self.newtonRing.r / self.newtonRing.n_medium) for m in range(1, count+1)]
-        r_bright = [np.sqrt((m + 0.5) * self.newtonRing.lam * self.newtonRing.r / self.newtonRing.n_medium) for m in range(count)]
+        r_dark = [np.sqrt(m * self.newtonRing.lam * self.newtonRing.r / self.newtonRing.n_medium)
+                  for m in range(1, count+1)]
+        r_bright = [np.sqrt((m + 0.5) * self.newtonRing.lam * self.newtonRing.r / self.newtonRing.n_medium)
+                    for m in range(count)]
 
         for i in range(len(r_dark)-1, -1, -1):
             r = r_dark[i]

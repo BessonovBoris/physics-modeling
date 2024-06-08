@@ -1,9 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
-import matplotlib.animation as animation
-from numpy import sin, cos
-from scipy.integrate import solve_ivp
 import NewtonRing
 
 
@@ -17,11 +14,8 @@ def on_change_value(value: np.float64):
     plotter.plot_intensity()
 
 
-lambdaCenter = 500
-"""Центр [nm]"""
-
-lambdaWidth = 1
-"""Ширина [nm]"""
+lambda_ = 500
+"""Волна [nm]"""
 
 r = 2
 """Радиус линзы [м]"""
@@ -50,11 +44,11 @@ light_graph.grid()
 
 axes_lambda_param = plt.axes([0.05, 0.25, 0.85, 0.04])
 lambda_param = Slider(axes_lambda_param,
-                 label='lamda',
-                 valmin=50,
-                 valmax=800,
-                 valinit=500,
-                 valfmt='%1d')
+                      label='lamda',
+                      valmin=50,
+                      valmax=800,
+                      valinit=500,
+                      valfmt='%1d')
 lambda_param.on_changed(on_change_value)
 
 axes_r_param = plt.axes([0.05, 0.17, 0.85, 0.04])
@@ -68,7 +62,7 @@ r_param.on_changed(on_change_value)
 
 line_1, = intensity_graph.plot([], [], lw=3)
 
-newtonRing = NewtonRing.NewtonRings(r, lambdaCenter, nLens, nPlate, nBetween)
+newtonRing = NewtonRing.NewtonRings(r, lambda_, nLens, nPlate, nBetween)
 plotter = NewtonRing.NRPlotter(newtonRing, intensity_graph, light_graph)
 
 plotter.plot_intensity()
